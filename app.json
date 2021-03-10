@@ -1,0 +1,10 @@
+{
+  "name": "dscapp",
+  "displayName": "dsc-app",
+  "expo": {
+    "name": "dsc-app",
+    "slug": "dsc-app",
+    "version": "1.0.0",
+    "assetBundlePatterns": ["**/*"]
+  }
+}

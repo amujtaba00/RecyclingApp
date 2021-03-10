@@ -1,0 +1,15 @@
+{
+    "type": "service_account",
+    "project_id": "recyclingapp-306222",
+    "private_key_id": "d773ef0446b834cca9458669a1dab47ec9e9451a",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDS8XJlztNY51P2\n2AIoC42y6nSfdO2rPHnjWq5pgyZg6E/Igv3kyCOuXo3b4jRNAP+EQddxl1U7Mk1F\n4iZ9DT9oGS1GxCNjsWKvYzpWe2im3RYCtYzh4I4UdVso2Y7mBMkop+vIkB5z54zr\n86BvuhAZJfeHQGDcnVryzt/OUfJYBmuebfu+e3pjqx0rmo0b3j9vTEHOuk6wUnGn\nC1wWwtEtW5z/KrXqJ/J72Hx/Osfn4R5kY9WWNaggGEiG7Z+2HjxFj6R7ItW0dUBY\nQHP+sJtem817onzfxP1j04/Cl9Pm9f6dHDDuGd2L9chhWwkVoS2bEY5j0Apezdti\niHKgkwxnAgMBAAECggEAHYgN4vDkp8Ki/6DYFHEholWuhBBjoaBy1ACDAGSK//Am\nE0U7dEcMr8GvDISLm+gy3Xo2RkHQfdwZ81mo18L+CH3V191nsvJHhZRXu3nFee7j\nwPdXxNuiKH0RiROELPGok9eGa+q5SLK3COVvpZSf4lVtZPL/XINvEyUhMgpI6kei\nk3QIzCAv9boOR0U6o5bALG96juOyuyK7AC4+vcJH/ZWIT2IsfDhiChTovok/PGKs\nIe85Xs+aPoaDjGc0umcCpehald/M9RkuquirKfzRtCgvwKgY36DleyLF7bnYboJf\n5v8LuAXOFgcuDMEuEEDwAegqveOQVSSpAQ5nZD2OcQKBgQD6e4feEVU1Qn7e6YC+\nWO//qZQ40nkmvV4AimIBGLD7L+xhv2CSmPsi43QO3ubieBcXCzbVbxDxb4MxoJ/v\nGVmDtmgG4yo5OGR7xarG455kWzujGdwjBAohVo+JYeaYipahTYlGLDonLNHDq4Wc\nAPO9On02yAoJl/r0SlXCA0paXwKBgQDXlvQr5uED3pIOntxJVvB85nUgYoICu4de\nlmsqDWpDl6lhyLf6PAdxadNQtR1pASH9LNRnTiaqTDnZIIqm4rKqwALMmhvbJ7bR\nkoT9I1ShSs6+S1iKzlDGAidXBzeaYoQu+7rojRjEzTTQLD4z7PH1ch/5IY34RlX0\nMDzx/5ya+QKBgQC/04bz7HZC+Y/MCytLmzUBqM8YzSd3IaMx6sivakdvtv3ixfuh\niYMa7vJcyRws6CdWwIHX5t0k6W+hvA9/vvwswK7eR254r9VUbMci1gLhfHUprY5H\nSrqvWWlHnzBINiqxkX3Fve0zP0HOBjemh5wimP53y67UNg48tAkFMhvpJQKBgAlt\njowE8r4qk5SUGeoTJT0xDto1tJ3N+aOHTHRwVb9S+JNQJcuJqIGrMRSMdxbKd+QM\ne9Vws3wrDTSTmbymmU2iS/0KmEFDQVl04N/5FZBgJx5nSR3428ts+K9zn1jfCgzL\n8WaOFRE2MCMSbD31FLe5H/DTKNQ8rzGYknG6zexxAoGANoJDiexIhNYJhgosMli/\nyXkAqQh4UzVcxD1ORfKvVcB+c6kleem1/OOk4aNvC8XXjc8gOwMQVWe6paeYeAFL\nyfETeOZq7g0F6H0SrCVcP3plhfEWeSquinGemP6KsUnDCGs63361eqiKfCeSDRNl\nNj2X5/vLrr8EDge80FRnJJg=\n-----END PRIVATE KEY-----\n",
+    "client_email": "dscrecyclingapp@recyclingapp-306222.iam.gserviceaccount.com",
+    "client_id": "109351727660313791563",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/dscrecyclingapp%40recyclingapp-306222.iam.gserviceaccount.com"
+  }
+  
+
+
