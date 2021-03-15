@@ -1,16 +1,17 @@
 // import React in our code
 import React, { useState } from "react";
-
+import data from "../data.json";
 // import all the components we are going to use
 import { Text, StyleSheet, View } from "react-native";
 import { SearchBar } from "react-native-elements";
 
 const BarSearch = () => {
   const [search, setSearch] = useState("");
-  const [DataSource, setFilteredDataSource] = useState([]);
+  const [DataSource, setFilteredDataSource] = useState();
 
   const searchFilterFunction = (text) => {
     // Check if searched text is not blank
+
     if (text) {
       // Inserted text is not blank
       // Filter the DataSource
@@ -23,6 +24,7 @@ const BarSearch = () => {
         return itemData.indexOf(textData) > -1;
       });
       setFilteredDataSource(newData);
+      console.log(newData);
       setSearch(text);
     } else {
       // Inserted text is blank
