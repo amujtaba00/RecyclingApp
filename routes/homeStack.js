@@ -3,6 +3,7 @@ import { createAppContainer } from "react-navigation";
 import Home from "../components/homeScreen/homeScreen";
 import OCRCamera from "../components/camera/camera";
 import Barcode from "../components/camera/barcode";
+import Product from "../components/product/productView";
 const screens = {
   Home: {
     screen: Home,
@@ -12,6 +13,9 @@ const screens = {
   },
   Barcode: {
     screen: Barcode,
+  },
+  ProductView: {
+    screen: Product,
   },
 };
 const HomeStack = createStackNavigator(screens);
