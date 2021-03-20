@@ -3,7 +3,9 @@ import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { RNCamera } from "react-native-camera";
 import { Camera } from "expo-camera";
+import productData from "../productData.json";
 
+var wuzzy = require("wuzzy");
 export default function App() {
   const [startCamera, setStartCamera] = React.useState(true);
 
@@ -19,7 +21,7 @@ export default function App() {
 
   const callToGoogleVisionAPI = (base64) => {
     fetch(
-      "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyDU2DbNSV7o1NHQ78jnCGK0PtVeETdy8hM",
+      "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyCCqFd-0Rwbo2BPk_KKR6EsUf-6D2ecygo",
       {
         method: "POST",
         headers: {
@@ -36,7 +38,7 @@ export default function App() {
               features: [
                 {
                   type: "TEXT_DETECTION",
-                  maxResults: 10,
+                  maxResults: 4,
                 },
               ],
             },
@@ -46,8 +48,55 @@ export default function App() {
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data["responses"][0]["fullTextAnnotation"]["text"]);
-        console.log("hello");
+        console.log(data);
+
+        var maxJaccardIndex = 0;
+        var bestMatch = "";
+        var bestMatches = [];
+
+        const detectedText = data["responses"][0]["fullTextAnnotation"][
+          "text"
+        ].replace(/\n/g, " ");
+        console.log(detectedText);
+        for (const category in productData) {
+          for (const product in productData[category]) {
+            var productName = productData[category][product]["name"];
+            // var jaccardIndex = wuzzy.ngram(
+            //   productName.toLowerCase(),
+            //   detectedText.toLowerCase()
+            // );
+
+            var jaccardIndex = 0;
+
+            productNameWords = productName.split(" ");
+
+            var unique = productNameWords.filter(
+              (v, i, a) => a.indexOf(v) === i
+            );
+
+            for (var i = 0; i < unique.length; i++) {
+              var word = unique[i];
+
+              if (detectedText.includes(word)) {
+                jaccardIndex += 1;
+              }
+            }
+
+            jaccardIndex = jaccardIndex / unique.length;
+
+            if (jaccardIndex > maxJaccardIndex) {
+              maxJaccardIndex = jaccardIndex;
+              bestMatch = productName;
+              bestMatches = [bestMatch];
+            }
+            if (jaccardIndex === maxJaccardIndex) {
+              bestMatches.push(productName);
+            }
+          }
+        }
+
+        console.log("BEST MATCH:-- " + bestMatch + maxJaccardIndex);
+        console.log(bestMatches);
       })
       .catch((err) => console.log(err));
   };

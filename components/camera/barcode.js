@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet, Button } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import AppButton from "../homeScreen/button";
-let cheerio = require("cheerio");
-const axios = require("axios");
+// let cheerio = require("cheerio");
+// const axios = require("axios");
 
 export default function BarcodeScanner() {
   const [hasPermission, setHasPermission] = useState(null);

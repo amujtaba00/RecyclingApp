@@ -9266,6 +9266,13 @@ ws@^7, ws@^7.0.0:
   resolved "https://registry.yarnpkg.com/ws/-/ws-7.4.3.tgz"
   integrity sha512-hr6vCR76GsossIRsr8OLR9acVVm1jyfEWvhbNjtgPOrfvAlKzvyeg/P6r8RuDjRyrcQoPQT7K0DGEPc7Ae6jzA==
 
+wuzzy@^0.1.6:
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/wuzzy/-/wuzzy-0.1.6.tgz#c0519cf73b236e0a3359762ddbae83ad4cadf46c"
+  integrity sha512-x1lDcj0VvzJ1ygDpd9LWMnQVei6gEkUbCcZUG8TPnXhlPbaQWQa32ab/6xbm/samxJ2T3Y2+P3xHeeQIAcEvqQ==
+  dependencies:
+    lodash "^4.17.15"
+
 xcode@^2.0.0, xcode@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/xcode/-/xcode-2.1.0.tgz"
