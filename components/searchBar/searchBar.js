@@ -1,64 +1,97 @@
 // import React in our code
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
+import recycleData from './recycleData.json';
 // import all the components we are going to use
-import { Text, StyleSheet, View } from "react-native";
-import { SearchBar } from "react-native-elements";
-import recycleData from "../recycleData.json";
+import { SafeAreaView, Text, StyleSheet, View, FlatList, Alert } from 'react-native';
+import { SearchBar } from 'react-native-elements';
 
 const BarSearch = () => {
-  const [search, setSearch] = useState("");
-  const [DataSource, setFilteredDataSource] = useState("");
+  const [search, setSearch] = useState('');
+  const [filteredDataSource, setFilteredDataSource] = useState([]);
+  const masterDataSource = recycleData.Info.map(function(item){
+    return {
+      name: item.name,
+      info: item.info
+    };
+  });
 
   const searchFilterFunction = (text) => {
     // Check if searched text is not blank
-
-    // JUST TO DOUBLE CHECK IMPORT
-    for (const category in recycleData["Info"]) {
-      var productName = recycleData["Info"][category]["name"];
-      console.log(productName);
+    if (text) {
+      // Inserted text is not blank
+      // Filter the masterDataSource
+      // Update FilteredDataSource
+      const newData = masterDataSource.filter(function (item) {
+        const itemData = item.name
+          ? item.name.toUpperCase()
+          : ''.toUpperCase();
+        const textData = text.toUpperCase();
+        return itemData.indexOf(textData) > -1;
+      });
+      setFilteredDataSource(newData);
+      setSearch(text);
+    } else {
+      // Inserted text is blank
+      // Update FilteredDataSource with masterDataSource
+      setFilteredDataSource(masterDataSource);
+      setSearch(text);
     }
+  };
 
-    console.log("HELLO");
+  const ItemView = ({ item }) => {
+    return (
+      // Flat List Item
+      <Text style={styles.itemStyle} onPress={() => getItem(item)}>
+        {item.name.toUpperCase()}
+      </Text>
+    );
+  };
 
-    // if (text) {
-    //   // Inserted text is not blank
-    //   // Filter the DataSource
-    //   // Update FilteredDataSource
-    //   const newData = DataSource.filter(function (item) {
-    //     const itemData = item.title
-    //       ? item.title.toUpperCase()
-    //       : "".toUpperCase();
-    //     const textData = text.toUpperCase();
-    //     return itemData.indexOf(textData) > -1;
-    //   });
-    //   setFilteredDataSource(newData);
+  const ItemSeparatorView = () => {
+    return (
+      // Flat List Item Separator
+      <View
+        style={{
+          height: 0.5,
+          width: '100%',
+          backgroundColor: '#C8C8C8',
+        }}
+      />
+    );
+  };
 
-    //   setSearch(text);
-    // } else {
-    //   // Inserted text is blank
-    //   // Update FilteredDataSource with DataSource
-    //   setFilteredDataSource(DataSource);
-    //   setSearch(text);
-    // }
+  const getItem = (item) => {
+    Alert.alert("Information", 'Object : ' + item.name + "\n\n" + 'Info : ' + item.info);
   };
 
   return (
-    <View style={styles.container}>
-      <SearchBar
-        round
-        searchIcon={{ size: 24 }}
-        onChangeText={(text) => searchFilterFunction(text)}
-        onClear={(text) => searchFilterFunction("")}
-        placeholder="Type Here..."
-        value={search}
-      />
-    </View>
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={styles.container}>
+        <SearchBar
+          round
+          searchIcon={{ size: 24 }}
+          onChangeText={(text) => searchFilterFunction(text)}
+          onClear={(text) => searchFilterFunction('')}
+          placeholder="Search Object"
+          value={search}
+        />
+        <FlatList
+          data={filteredDataSource}
+          keyExtractor={item => item.name}
+          ItemSeparatorComponent={ItemSeparatorView}
+          renderItem={ItemView}
+        />
+      </View>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "white",
+    backgroundColor: 'white',
+  },
+  itemStyle: {
+    padding: 10,
   },
 });
 
