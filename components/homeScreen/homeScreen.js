@@ -10,6 +10,13 @@ export default function HomeScreen({ navigation }) {
   const pressBarcodeButton = () => {
     navigation.push("Barcode");
   };
+  const pressProductButton = () => {
+    navigation.navigate("ProductView", {
+      productName: "Dempster's Bread",
+      otherParam: 12,
+    });
+    console.log("HIT THIS");
+  };
   return (
     <View style={styles.container}>
       <SearchBar
@@ -28,6 +35,13 @@ export default function HomeScreen({ navigation }) {
       />
       <View style={styles.spacing}></View>
       <AppButton style={styles.button} onPress={pressOCRButton} title="OCR" />
+
+      <View style={styles.spacing}></View>
+      <AppButton
+        style={styles.button}
+        onPress={pressProductButton}
+        title="test product view"
+      />
     </View>
   );
 }

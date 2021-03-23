@@ -6,7 +6,7 @@ import { Camera } from "expo-camera";
 import productData from "../productData.json";
 
 var wuzzy = require("wuzzy");
-export default function App() {
+export default function App({ navigation }) {
   const [startCamera, setStartCamera] = React.useState(true);
 
   const __takePicture = async () => {
@@ -54,17 +54,16 @@ export default function App() {
         var bestMatch = "";
         var bestMatches = [];
 
-        const detectedText = data["responses"][0]["fullTextAnnotation"][
-          "text"
-        ].replace(/\n/g, " ");
+        const detectedText = data["responses"][0]["fullTextAnnotation"]["text"]
+          .replace(/\n/g, " ")
+          .toLowerCase();
         console.log(detectedText);
         for (const category in productData) {
           for (const product in productData[category]) {
-            var productName = productData[category][product]["name"];
-            // var jaccardIndex = wuzzy.ngram(
-            //   productName.toLowerCase(),
-            //   detectedText.toLowerCase()
-            // );
+            var productName = productData[category][product][
+              "name"
+            ].toLowerCase();
+            var productInfo = productData[category][product];
 
             var jaccardIndex = 0;
 
@@ -83,20 +82,38 @@ export default function App() {
             }
 
             jaccardIndex = jaccardIndex / unique.length;
+            if (productInfo["barcode"] == "6000200900261") {
+              console.log("WENT THRU!!!!!!!!!!!!!!!!!!!!", jaccardIndex);
+            }
 
             if (jaccardIndex > maxJaccardIndex) {
               maxJaccardIndex = jaccardIndex;
-              bestMatch = productName;
+              productInfo["jaccardIndex"] = jaccardIndex;
+              bestMatch = productInfo;
               bestMatches = [bestMatch];
             }
             if (jaccardIndex === maxJaccardIndex) {
-              bestMatches.push(productName);
+              productInfo["jaccardIndex"] = jaccardIndex;
+              bestMatches.push(productInfo);
             }
           }
         }
 
         console.log("BEST MATCH:-- " + bestMatch + maxJaccardIndex);
         console.log(bestMatches);
+        if (bestMatches.length > 0) {
+          navigation.navigate("ProductView", {
+            productName: bestMatches[0]["name"],
+            recyclable: bestMatches[0]["recyclable"],
+            additionalInfo: bestMatches[0]["additionalInfo"],
+          });
+        } else {
+          navigation.navigate("ProductView", {
+            productName: bestMatch["name"],
+            recyclable: bestMatch["recyclable"],
+            additionalInfo: bestMatch["additionalInfo"],
+          });
+        }
       })
       .catch((err) => console.log(err));
   };

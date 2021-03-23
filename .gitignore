@@ -5,8 +5,11 @@ android/*.hprof
 # OSX
 #
 .DS_Store
+*.json
 /components/productData.json
-componenets/productData.json
+components/productData.json
+/components/recycleData.json
+components/recycleData.json
 # Xcode
 #
 build/

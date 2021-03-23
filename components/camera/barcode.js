@@ -2,10 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Text, View, StyleSheet, Button } from "react-native";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import AppButton from "../homeScreen/button";
+import productData from "../productData.json";
 // let cheerio = require("cheerio");
 // const axios = require("axios");
 
-export default function BarcodeScanner() {
+export default function BarcodeScanner({ navigation }) {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
 
@@ -17,26 +18,45 @@ export default function BarcodeScanner() {
   }, []);
 
   const handleBarCodeScanned = ({ type, data }) => {
+    var navigated = false;
     setScanned(true);
-    // alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+    console.log("THIS IS THE BARCODE", data);
 
-    // console.log("Smt");
+    for (const category in productData) {
+      for (const product in productData[category]) {
+        var productInfo = productData[category][product];
+        var productName = productData[category][product]["name"].toLowerCase();
+        var barcode = productData[category][product]["UPC"];
 
-    // var url = `https://www.walmart.ca/search?q=${data
-    //   .toString()
-    //   .substring(2)
-    //   .slice(0, -1)}&c=10019`;
+        var barcodeFound = false;
 
-    // axios.get(url).then((response) => {
-    //   console.log(response.data);
-    // });
-    // let $ = cheerio.load(url);
+        if (barcode == "6041004701") {
+          console.log("IT WAS HERE!!");
+          barcodeFound = barcode.toString().includes(data.toString());
+          console.log(barcodeFound);
+        }
 
-    // console.log($.text());
-
-    // $(".css-vh2dix e1m8uw911").each(function (index, element) {
-    //   console.log(index, element);
-    // });
+        if (barcodeFound) {
+          navigated = true;
+          console.log("SHOULD NAVIGATE");
+          navigation.navigate("ProductView", {
+            productName: productInfo["name"],
+            recyclable: productInfo["recyclable"],
+            additionalInfo: productInfo["additionalInfo"],
+          });
+          return;
+        }
+      }
+    }
+    if (navigated) {
+    } else {
+      navigation.navigate("ProductView", {
+        productName: "Not Found",
+        recyclable: "F",
+        additionalInfo: "",
+      });
+    }
   };
 
   if (hasPermission === null) {
