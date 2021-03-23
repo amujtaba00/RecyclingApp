@@ -1,4 +1,4 @@
-import { View, Button, StyleSheet, TouchableOpacity, Text, Image, Platform } from "react-native";
+import { View, Button, StyleSheet, TouchableOpacity, Text, Image, Platform, Alert } from "react-native";
 import React, { Component } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import AppButton from "../homeScreen/button";
@@ -6,6 +6,12 @@ import AppButton from "../homeScreen/button";
 export default function ProductView({ navigation }) {
     const pressHomeButton = () => {
         navigation.push("Home");
+    };
+    const showExtraItems = () => {
+        Alert.alert("Items", String(navigation.getParam("name")))
+    };
+    const showExtraInfo = () => {
+        Alert.alert("Info", String(navigation.getParam("info")))
     };
 
     const productStyles = () => {
@@ -53,7 +59,13 @@ export default function ProductView({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <Text style={productStyles()}>Coke bottle</Text>
+            <Text
+                style={productStyles()}
+                numberOfLines={2}
+                onPress={showExtraItems}
+            >
+                {navigation.getParam("name").toUpperCase()}
+            </Text>
             <View style={styles.spacing}></View>
             <Image
                 fadeDuration={500}
@@ -63,12 +75,19 @@ export default function ProductView({ navigation }) {
                     uri: "https://picsum.photos/200/400"
                 }}
             />
+
             <View style={styles.spacing}></View>
-            <Text style={recycleStyles()}>Is Not Recyclable</Text>
+            {/* <Text style={recycleStyles()}>Is Not Recyclable</Text>
             <View style={styles.spacing}></View>
-            <View style={styles.spacing}></View>
-            <Text style={infoStyles()}>Extra info: lorem ipsum asdfasdf asdfasdf</Text>
-            <View style={styles.spacing}></View>
+            <View style={styles.spacing}></View> */}
+            <Text
+                style={infoStyles()}
+                numberOfLines={6}
+                onPress={showExtraInfo}
+            >
+                Info: {navigation.getParam("info")}
+            </Text>
+
             <View style={styles.spacing}></View>
             <AppButton
                 style={styles.button}

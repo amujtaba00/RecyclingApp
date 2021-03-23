@@ -1,11 +1,11 @@
 // import React in our code
 import React, { useState, useEffect } from 'react';
-import recycleData from './recycleData.json';
+import recycleData from '../data.json';
 // import all the components we are going to use
 import { SafeAreaView, Text, StyleSheet, View, FlatList, Alert } from 'react-native';
 import { SearchBar } from 'react-native-elements';
 
-const BarSearch = () => {
+const BarSearch = ({ navigation }) => {
   const [search, setSearch] = useState('');
   const [filteredDataSource, setFilteredDataSource] = useState([]);
   const masterDataSource = recycleData.Info.map(function(item){
@@ -61,7 +61,8 @@ const BarSearch = () => {
   };
 
   const getItem = (item) => {
-    Alert.alert("Information", 'Object : ' + item.name + "\n\n" + 'Info : ' + item.info);
+    // Alert.alert("Information", 'Object : ' + item.name + "\n\n" + 'Info : ' + item.info);
+    navigation.navigate("ProductView", item)
   };
 
   return (

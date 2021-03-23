@@ -2,7 +2,7 @@ import { View, Button, StyleSheet, TouchableOpacity, Text } from "react-native";
 import React, { Component } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import AppButton from "./button";
-import SearchBar from "../searchBar/searchBar";
+import BarSearch from "../searchBar/searchBar";
 export default function HomeScreen({ navigation }) {
   const pressOCRButton = () => {
     navigation.push("OCR");
@@ -13,13 +13,18 @@ export default function HomeScreen({ navigation }) {
   const pressProductButton = () => {
     navigation.push("ProductView");
   };
+  const pressSearchButton = () => {
+    navigation.push("BarSearch");
+  };
   return (
     <View style={styles.container}>
-      <SearchBar
+      {/* <BarSearch
         style={{
           width: 200,
         }}
-      />
+      /> */}
+      <AppButton style={styles.button} onPress={pressSearchButton} title="Search Bar" />
+
       <View style={styles.spacing}></View>
 
       <View style={styles.spacing}></View>

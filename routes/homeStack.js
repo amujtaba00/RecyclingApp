@@ -4,6 +4,8 @@ import Home from "../components/homeScreen/homeScreen";
 import OCRCamera from "../components/camera/camera";
 import Barcode from "../components/camera/barcode";
 import Product from "../components/product/productView";
+import Search from "../components/searchBar/searchBar";
+
 const screens = {
   Home: {
     screen: Home,
@@ -17,6 +19,9 @@ const screens = {
   ProductView: {
     screen: Product,
   },
+  BarSearch: {
+    screen: Search,
+  }
 };
 const HomeStack = createStackNavigator(screens);
 
