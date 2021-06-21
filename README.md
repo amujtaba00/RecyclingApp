@@ -2,7 +2,9 @@
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=G5zugqZEQVs
 " target="_blank"><img src="http://img.youtube.com/vi/G5zugqZEQVs/0.jpg" 
-alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
+alt="Link to Demo" width="480" height="360" border="10" /></a>
+
+Click above image to view demo
 ## Inspiration
 Personal Difficulties in Recycling
 
